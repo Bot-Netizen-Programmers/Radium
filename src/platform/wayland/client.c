@@ -104,11 +104,12 @@ void xdg_toplevel_configure(void *data,
         return;
     }
     if (client->width != width || client->height != height) {
-        client->width = width;
-        client->height = height;
         if (client->pixel){
             munmap(client->pixel, client->width * client->height * 4);
-        }
+        } // moved if block 
+        client->width = width;
+        client->height = height;
+        
         resize(client);
     }
 };
